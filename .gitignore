@@ -1,0 +1,19 @@
+
+# Dependências
+node_modules/
+
+# Ficheiros do macOS
+.DS_Store
+
+# Builds da aplicação
+dist/
+out/
+release/
+
+# Ficheiros temporários
+*.log
+
+# Variáveis privadas
+.env
+.env.*
+!.env.example

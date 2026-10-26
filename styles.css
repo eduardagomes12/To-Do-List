@@ -1,0 +1,535 @@
+
+/* ======================================
+   1. CORES E CONFIGURAÇÕES GERAIS
+====================================== */
+
+:root {
+  --text: #62596d;
+  --text-soft: #978ca3;
+
+  --accent: #b5a3c9;
+  --accent-dark: #8e7aa8;
+
+  --border: rgba(255, 255, 255, 0.48);
+
+  --glass-focused: rgba(249, 246, 252, 0.84);
+  --glass-unfocused: rgba(249, 246, 252, 0.49);
+
+  --radius: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  background: transparent !important;
+  overflow: hidden;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: var(--text);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent-dark);
+  outline-offset: 2px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ======================================
+   2. BOLINHA FLUTUANTE
+====================================== */
+
+.compact-view {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.compact-bubble {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255,255,255,0.7);
+
+  background: rgba(239, 231, 247, 0.87);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  color: var(--accent-dark);
+
+  font-size: 19px;
+  font-weight: 500;
+
+  box-shadow:
+    0 5px 20px rgba(80, 65, 100, 0.14),
+    inset 0 1px 2px rgba(255,255,255,0.8);
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.compact-bubble:hover {
+  background: rgba(249, 245, 255, 0.96);
+
+  transform: scale(1.07);
+
+  box-shadow:
+    0 8px 25px rgba(80, 65, 100, 0.20);
+}
+
+.compact-bubble:active {
+  transform: scale(0.96);
+}
+
+
+/* ======================================
+   3. JANELA EXPANDIDA
+====================================== */
+
+.expanded-view {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  border-radius: var(--radius);
+
+  border: 1px solid var(--border);
+
+  background: var(--glass-focused);
+
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+
+  box-shadow:
+    0 12px 35px rgba(60, 45, 80, 0.13),
+    inset 0 1px 1px rgba(255,255,255,0.7);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+
+  animation: appear 0.25s ease;
+}
+
+/* Quando a janela perde o foco */
+
+.app.is-unfocused .expanded-view {
+  background: var(--glass-unfocused);
+
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* Animação de entrada */
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(-7px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* ======================================
+   4. CABEÇALHO
+====================================== */
+
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding: 22px 20px 13px;
+
+  -webkit-app-region: drag;
+  app-region: drag;
+}
+
+.widget-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  color: var(--accent-dark);
+}
+
+.widget-heading h1 {
+  margin: 0;
+
+  font-size: 20px;
+  font-weight: 550;
+
+  letter-spacing: -0.5px;
+}
+
+.today-label {
+  margin: 0;
+
+  font-size: 11px;
+  color: var(--text-soft);
+}
+
+
+/* ======================================
+   5. BOTÕES SUPERIORES
+====================================== */
+
+.window-actions {
+  display: flex;
+  gap: 6px;
+
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+}
+
+.icon-button {
+  width: 29px;
+  height: 29px;
+
+  border: 1px solid rgba(180,160,195,0.2);
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.3);
+
+  color: var(--text);
+
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background 0.2s ease;
+}
+
+.icon-button:hover {
+  background: rgba(255,255,255,0.7);
+}
+
+.icon-button.is-active {
+  color: var(--accent-dark);
+}
+
+
+/* ======================================
+   6. SEPARADORES
+====================================== */
+
+.tabs {
+  display: flex;
+  gap: 3px;
+
+  margin: 10px 16px 0;
+  padding: 4px;
+
+  border-radius: 13px;
+
+  background: rgba(195,180,207,0.19);
+}
+
+.tab {
+  flex: 1;
+
+  min-width: 0;
+
+  border: none;
+  border-radius: 9px;
+
+  padding: 9px 3px;
+
+  background: transparent;
+
+  color: var(--text-soft);
+
+  font-size: 10px;
+  font-weight: 500;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.27);
+}
+
+.tab.is-active {
+  color: var(--accent-dark);
+
+  background: rgba(255,255,255,0.68);
+
+  box-shadow: 0 2px 6px rgba(90,70,110,0.06);
+}
+
+
+/* ======================================
+   7. ÁREA DAS TAREFAS
+====================================== */
+
+.tasks-area {
+  flex: 1;
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 17px 20px;
+}
+
+.tasks-area::-webkit-scrollbar {
+  width: 4px;
+}
+
+.tasks-area::-webkit-scrollbar-thumb {
+  background: rgba(150,130,170,0.3);
+  border-radius: 10px;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Categoria: Work, Study, Life... */
+
+.task-group-title {
+  margin: 12px 0 5px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  color: var(--accent-dark);
+}
+
+/* Cada tarefa */
+
+.task-item {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 8px;
+
+  border-radius: 11px;
+
+  background: rgba(255,255,255,0.14);
+
+  transition: background 0.2s ease;
+}
+
+.task-item:hover {
+  background: rgba(255,255,255,0.37);
+}
+
+.task-checkbox {
+  width: 16px;
+  height: 16px;
+
+  flex-shrink: 0;
+
+  accent-color: var(--accent-dark);
+
+  cursor: pointer;
+}
+
+.task-text {
+  flex: 1;
+
+  min-width: 0;
+
+  font-size: 12px;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+.task-item.is-completed .task-text {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+/* Botões de cada tarefa */
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.task-action {
+  border: none;
+  border-radius: 7px;
+
+  padding: 5px;
+
+  background: transparent;
+
+  color: var(--text-soft);
+
+  font-size: 11px;
+}
+
+.task-action:hover {
+  background: rgba(255,255,255,0.5);
+  color: var(--accent-dark);
+}
+
+
+/* ======================================
+   8. LISTA VAZIA
+====================================== */
+
+.empty-state {
+  text-align: center;
+
+  margin-top: 60px;
+
+  color: var(--text-soft);
+}
+
+.empty-icon {
+  font-size: 27px;
+  color: var(--accent);
+}
+
+.empty-state p {
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.empty-state small {
+  font-size: 11px;
+}
+
+
+/* ======================================
+   9. ADICIONAR TAREFAS
+====================================== */
+
+.add-task-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 0 16px 16px;
+
+  padding: 8px 10px 8px 15px;
+
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.3);
+}
+
+.add-task-form input {
+  flex: 1;
+
+  min-width: 0;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-size: 12px;
+}
+
+.add-task-form input::placeholder {
+  color: #a99db3;
+}
+
+.add-button {
+  width: 28px;
+  height: 28px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: rgba(186,166,207,0.30);
+
+  color: var(--accent-dark);
+
+  font-size: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background 0.2s ease;
+}
+
+.add-button:hover {
+  background: rgba(186,166,207,0.55);
+}
+
+
+/* ======================================
+   10. ACESSIBILIDADE
+====================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

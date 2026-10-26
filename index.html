@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>My Little To-Do List</title>
+
+  <!-- Estilos da aplicação -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div id="app" class="app">
+
+    <!-- ================================= -->
+    <!-- 1. MODO COMPACTO: BOLINHA         -->
+    <!-- ================================= -->
+
+    <section
+      id="compact-view"
+      class="compact-view"
+    >
+
+      <button
+        id="compact-button"
+        class="compact-bubble"
+        type="button"
+        title="Abrir a minha lista"
+        aria-label="Abrir lista de tarefas"
+      >
+
+        <!-- Número de tarefas por concluir -->
+        <span id="compact-count">0</span>
+
+      </button>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- 2. MODO EXPANDIDO: TO-DO LIST    -->
+    <!-- ================================= -->
+
+    <section
+      id="expanded-view"
+      class="expanded-view"
+      hidden
+    >
+
+      <!-- CABEÇALHO -->
+
+      <header class="widget-header">
+
+        <div class="widget-heading">
+
+          <span class="eyebrow">
+            my little space ✿
+          </span>
+
+          <h1>To-do list</h1>
+
+          <!-- Data atual -->
+          <p id="today-label" class="today-label">
+            Today
+          </p>
+
+        </div>
+
+
+        <!-- BOTÕES DA JANELA -->
+
+        <div class="window-actions">
+
+          <!-- Fixar / desafixar -->
+          <button
+            id="pin-button"
+            class="icon-button is-active"
+            type="button"
+            title="Fixar ou desafixar"
+            aria-label="Fixar ou desafixar janela"
+            aria-pressed="true"
+          >
+            ♧
+          </button>
+
+          <!-- Minimizar para bolinha -->
+          <button
+            id="minimize-button"
+            class="icon-button"
+            type="button"
+            title="Minimizar"
+            aria-label="Minimizar lista"
+          >
+            −
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <!-- ================================= -->
+      <!-- 3. SEPARADORES                    -->
+      <!-- ================================= -->
+
+      <nav
+        class="tabs"
+        role="tablist"
+        aria-label="Estados das tarefas"
+      >
+
+        <button
+          class="tab is-active"
+          data-status="todo"
+          type="button"
+          role="tab"
+          aria-selected="true"
+        >
+          To-do
+        </button>
+
+        <button
+          class="tab"
+          data-status="pending"
+          type="button"
+          role="tab"
+          aria-selected="false"
+        >
+          Pending
+        </button>
+
+        <button
+          class="tab"
+          data-status="completed"
+          type="button"
+          role="tab"
+          aria-selected="false"
+        >
+          Completed
+        </button>
+
+        <button
+          class="tab"
+          data-status="cancelled"
+          type="button"
+          role="tab"
+          aria-selected="false"
+        >
+          Cancelled
+        </button>
+
+      </nav>
+
+
+      <!-- ================================= -->
+      <!-- 4. LISTA DE TAREFAS              -->
+      <!-- ================================= -->
+
+      <main class="tasks-area">
+
+        <!--
+          As tarefas serão adicionadas aqui
+          através do renderer.js
+        -->
+
+        <div
+          id="task-list"
+          class="task-list"
+          aria-live="polite"
+        ></div>
+
+
+        <!-- Mensagem quando a lista está vazia -->
+
+        <div
+          id="empty-state"
+          class="empty-state"
+          hidden
+        >
+
+          <span class="empty-icon">✿</span>
+
+          <p>Nothing here yet...</p>
+
+          <small>
+            A little space for your plans.
+          </small>
+
+        </div>
+
+      </main>
+
+
+      <!-- ================================= -->
+      <!-- 5. ADICIONAR NOVA TAREFA         -->
+      <!-- ================================= -->
+
+      <form
+        id="add-task-form"
+        class="add-task-form"
+      >
+
+        <input
+          id="new-task-input"
+          type="text"
+          placeholder="Add new to-do..."
+          autocomplete="off"
+          maxlength="120"
+          aria-label="Nova tarefa"
+          required
+        >
+
+        <button
+          id="add-task-button"
+          class="add-button"
+          type="submit"
+          title="Adicionar tarefa"
+          aria-label="Adicionar tarefa"
+        >
+          +
+        </button>
+
+      </form>
+
+    </section>
+
+  </div>
+
+
+  <!-- Lógica e interações da aplicação -->
+  <script src="renderer.js" defer></script>
+
+</body>
+</html>
